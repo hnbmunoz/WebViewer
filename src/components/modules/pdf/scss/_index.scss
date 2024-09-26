@@ -1,0 +1,22 @@
+.pdf-viewer {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  width: 100%;
+  height: inherit;
+
+  &--container {
+    width:100%;
+    display:flex;    
+    height: inherit;
+  }
+
+  &--dropzone {
+    background-color: #aaa;
+    cursor: pointer;
+    height: 15rem;
+    width: 15rem;
+    
+  }
+}
+
