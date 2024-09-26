@@ -1,26 +1,25 @@
 import "./App.scss";
-import Header from "./components/Header";
-import Dashboard from "./components/Dashboard";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import  { Suspense, lazy } from "react";
-
-// Lazy loading components
-const PDFSelector = lazy(() => import("./components/modules/pdf/PDFSelector"));
+import SidePanel from "./components/SidePanel";
+import PDFSelector from "./components/modules/pdf/PDFSelector";
+import { useState } from "react";
+import { DocumentInterface } from "./components/interface/DocumentInterface";
 
 function App() {
+  const [documentList, setDocumentList] = useState<DocumentInterface[]>([])
+
+  const handleUpsertDocumentList = (document: DocumentInterface) => {
+    const isExisting = documentList.find((data) => data.documentName === document.documentName)
+    if (isExisting) return
+    const updatedList = [...documentList, document]
+    
+    setDocumentList(updatedList)
+  }
  
   return (
     <div className="app">
-      <Header />
-      <Router>
-          {/* Suspense to handle the loading state */}
-          <Suspense fallback={<div>Loading...</div>}>
-            <Routes>
-            <Route path="/" element={<Dashboard />} />
-              <Route path="/pdf-viewer" element={<PDFSelector />} />
-            </Routes>
-          </Suspense>
-      </Router>
+      {/* <Header /> */}
+      <SidePanel documentList={documentList}/>
+      <PDFSelector handleUpsertDocumentList={handleUpsertDocumentList}/>
     </div>
   );
 }

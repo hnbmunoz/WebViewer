@@ -1,4 +1,4 @@
-.home-button {
+.clear-button {
   background-color: #1A2027;
   border-radius: 50%;
   font-size: 1.7rem;
@@ -10,4 +10,10 @@
   bottom: 0;
   margin: 1rem;
   z-index: 1;
+  transition: all 0.3s ease; 
+  &:hover {
+    background-color: #2D3748; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+    transform: translateY(-5px); 
+  }
 }

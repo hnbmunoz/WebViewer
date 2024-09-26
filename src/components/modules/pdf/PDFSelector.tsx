@@ -1,21 +1,34 @@
 import { useState, useCallback } from "react";
 import PDFViewer from "./PDFViewer";
+import ClearButton from "../../button/ClearButton";
 import { useDropzone } from "react-dropzone";
-import HomeButton from "../../button/HomeButton";
+import { DocumentInterface } from "../../interface/DocumentInterface";
 
-const PDFSelector = () => {
-  const [sourceFile, setSourceFile] = useState<any>();
+interface PDFSelectorProps {
+  handleUpsertDocumentList: (document: DocumentInterface) => void
+}
+
+const PDFSelector = ({handleUpsertDocumentList}: PDFSelectorProps) => {
+  const [sourceFile, setSourceFile] = useState<string | null>();
   const onDrop = useCallback((acceptedFiles: File[]) => {
     if (!acceptedFiles) return;
     const file = acceptedFiles[0];
     if (file && file.type === "application/pdf") {
       let data = URL.createObjectURL(file);
+      handleUpsertDocumentList({
+        documentName: file.name ?? '',
+        documentBlob: data ?? ''
+      })
       setSourceFile(data);
     } else {
       alert("Please upload a valid PDF file");
     }
   }, []);
   const { getRootProps, getInputProps } = useDropzone({ onDrop });
+
+  const handleClearButton = () => {
+    setSourceFile(null)
+  }
   return (
     <div className="pdf-viewer">
       <div className="pdf-viewer--container">
@@ -34,7 +47,7 @@ const PDFSelector = () => {
           </div>
         )}
         {sourceFile && <PDFViewer source={sourceFile} />}
-        <HomeButton />
+        {sourceFile && <ClearButton onClickClear={handleClearButton} />}
       </div>
     </div>
   );
