@@ -1,4 +1,4 @@
-import { useState, useCallback, useEffect } from "react";
+import { useState, useCallback } from "react";
 import PDFViewer from "./PDFViewer";
 import ClearButton from "../../button/ClearButton";
 import { useDropzone } from "react-dropzone";
