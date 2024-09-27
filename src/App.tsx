@@ -8,17 +8,17 @@ function App() {
   const [documentList, setDocumentList] = useState<DocumentInterface[]>([])
 
   const handleUpsertDocumentList = (document: DocumentInterface) => {
+    if(!documentList) return
     const isExisting = documentList.find((data) => data.documentName === document.documentName)
     if (isExisting) return
     const updatedList = [...documentList, document]
-    
     setDocumentList(updatedList)
   }
+
  
   return (
     <div className="app">
-      {/* <Header /> */}
-      <SidePanel documentList={documentList}/>
+      <SidePanel documentList={documentList} />
       <PDFSelector handleUpsertDocumentList={handleUpsertDocumentList}/>
     </div>
   );
