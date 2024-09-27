@@ -1,0 +1,1 @@
+{"root":["./src/app.tsx","./src/main.tsx","./src/vite-env.d.ts","./src/components/sidepanel.tsx","./src/components/button/clearbutton.tsx","./src/components/interface/documentinterface.ts","./src/components/modules/image/imagegallery.tsx","./src/components/modules/pdf/pdfselector.tsx","./src/components/modules/pdf/pdfviewer.tsx","./src/utils/helpers.ts"],"version":"5.6.2"}
